@@ -2,8 +2,10 @@
 #include <iostream>
 #include <string>
 
-#define WINDOW_SIZE 500
+#define APP_NAME "Fractal"
+#define WINDOW_SIZE 1000
 #define COLOR 265
+#define MAX_ITER 2000
 
 namespace
 {
@@ -41,6 +43,27 @@ void showHelpMessage()
 	exit(EXIT_SUCCESS);
 }
 
+struct ComplexNumber
+{
+    double re = 0.0;
+    double im = 0.0;
+};
+
+int	calcMandelbrot(ComplexNumber& c)
+{
+	double        reTemp;
+	ComplexNumber z;
+    size_t i = 0;
+
+	for (; (z.re * z.re + z.im * z.im < 4) && i < MAX_ITER; ++i)
+	{
+		reTemp = z.re * z.re - z.im * z.im + c.re;
+		z.im = 2 * z.re * z.im + c.im;
+		z.re = reTemp;
+	}
+	return (i);
+}
+
 class Fractal
 {
 public:
@@ -66,6 +89,7 @@ public:
         _offsetY = -2;
         _isJuliaLocked = false;
         _color = COLOR;
+        fractalCallback = calcMandelbrot;
     }
 
     void setFractalType(std::string str)
@@ -77,6 +101,31 @@ public:
             showHelpMessage();
     }
 
+    size_t calc(ComplexNumber& c)
+    {
+        return fractalCallback(c);
+    }
+
+    double getZoom()
+    {
+        return _zoom;
+    }
+
+    double getOffsetX()
+    {
+        return _offsetX;
+    }
+
+    double getOffsetY()
+    {
+        return _offsetY;
+    }
+
+    u_int32_t getColor()
+    {
+        return _color;
+    }
+
 private:
 	double      _zoom;
 	double      _mouseX;
@@ -86,10 +135,8 @@ private:
 	u_int32_t   _color;
 	FractalType _type;
 	bool        _isJuliaLocked;
+    std::function<size_t(ComplexNumber&)> fractalCallback;
 };
-
-
-
 
 class Engine final
 {
@@ -107,62 +154,89 @@ public:
     {
         if (argc == 2)
             _fractal.setFractalType(argv[1]);
-
-        _image = new sf::Image();
-        _image->create(WINDOW_SIZE, WINDOW_SIZE, sf::Color::White);
-        _texture = new sf::Texture();
-        _texture->loadFromImage(*_image);
-        _window = new sf::RenderWindow(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "TEST");
-        _sprite = new sf::Sprite();
-        _sprite->setTexture(*_texture);
+        _image.create(WINDOW_SIZE, WINDOW_SIZE, sf::Color::White);
+        _window.create(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), APP_NAME);
+        _texture.loadFromImage(_image);
+        _sprite.setTexture(_texture);
     }
 
-    void reset()
+    void draw()
     {
-        _fractal.reset();
+        _window.clear();
+        _texture.loadFromImage(_image);
+        _sprite.setTexture(_texture);
+        _window.draw(_sprite);
+        _window.display();
     }
 
-// TODO: Change to private
-public:
-    Fractal _fractal;
-    sf::Image* _image;
-    sf::Texture* _texture;
-    sf::RenderWindow* _window;
-    sf::Sprite* _sprite;
+    Fractal& getFractal()
+    {
+        return _fractal;
+    }
+
+    sf::Image& getImage()
+    {
+        return _image;
+    }
+
+    sf::RenderWindow& getWindow()
+    {
+        return _window;
+    }
+
+private:
+    Fractal          _fractal;
+    sf::Image        _image;
+    sf::Texture      _texture;
+    sf::Sprite       _sprite;
+    sf::RenderWindow _window;
 };
+
+void calcFractal(Engine& engine) try
+{
+    size_t iter;
+	ComplexNumber c;
+    Fractal& fractal = engine.getFractal();
+    double zoom = fractal.getZoom();
+    double offsetX = fractal.getOffsetX();
+    double offsetY = fractal.getOffsetY();
+
+    for (int i = 0; i < WINDOW_SIZE; ++i)
+    {
+        c.re = (i / zoom) + offsetX;
+        for (int j = 0; j < WINDOW_SIZE; ++j)
+        {
+            c.im = (j / zoom) + offsetY;
+            iter = fractal.calc(c);
+            engine.getImage().setPixel(i, j, sf::Color(iter, 0, 0));
+        }
+    }
+}
+catch(std::exception& e)
+{
+    std::cout << e.what() << std::endl;
+}
 
 int main(int argc, char **argv)
 {
     if (argc != 1 && argc != 2)
 		showHelpMessage();
 
-    Engine engine;
-    engine.init(argc, argv);
+    Engine* engine = new Engine();
+    engine->init(argc, argv);
 
-
-    // ################### TESTING #####################
-    engine._image->setPixel(400, 300, sf::Color::Red);
-    engine._image->setPixel(400, 301, sf::Color::Red);
-    engine._image->setPixel(400, 302, sf::Color::Red);
-    engine._image->setPixel(400, 303, sf::Color::Red);
-    engine._image->setPixel(400, 304, sf::Color::Red);
-    engine._image->setPixel(400, 305, sf::Color::Red);
-    engine._texture->loadFromImage(*engine._image);
-    engine._sprite->setTexture(*engine._texture);
-
-    sf::RenderWindow* window = engine._window;
-    while (window->isOpen())
+    calcFractal(*engine);
+    sf::RenderWindow& window = engine->getWindow();
+    while (window.isOpen())
     {
         sf::Event event;
-        while (window->pollEvent(event))
+        while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                window->close();
+                window.close();
         }
-
-        window->clear();
-        window->draw(*engine._sprite);
-        window->display();
+        // calcFractal(*engine);
+        engine->draw();
     }
     return 0;
 }
