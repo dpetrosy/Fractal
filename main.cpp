@@ -5,7 +5,7 @@
 #define APP_NAME "Fractal"
 #define WINDOW_SIZE 1000
 #define COLOR 265
-#define MAX_ITER 2000
+#define MAX_ITER 200
 
 namespace
 {
