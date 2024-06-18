@@ -7,6 +7,7 @@
 #define WINDOW_SIZE 1000
 #define COLOR 265
 #define MAX_ITER 200
+#define ZOOM 1.3
 
 namespace
 {

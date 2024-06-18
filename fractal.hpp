@@ -18,6 +18,9 @@ public:
     void colorizePixels(sf::Image& image);
     void setFractalType(std::string type);
 
+    void zoomIn(int x, int y);
+    void zoomOut(int x, int y);
+
     double getZoom();
     double getOffsetX();
     double getOffsetY();

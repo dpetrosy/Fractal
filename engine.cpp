@@ -27,6 +27,33 @@ void Engine::draw()
     _window.display();
 }
 
+void Engine::handleEvent(sf::Event& event)
+{
+    switch (event.type)
+    {
+        case sf::Event::Closed:
+        {
+            _window.close();
+            break;
+        }
+        case sf::Event::MouseWheelScrolled:
+        {
+            int x = event.mouseWheelScroll.x;
+            int y = event.mouseWheelScroll.y;
+
+            if (event.mouseWheelScroll.delta > 0) // Zoom-in
+                _fractal.zoomIn(x, y);
+            else // Zoom-out
+                _fractal.zoomOut(x, y);
+            _fractal.colorizePixels(_image);
+            draw();
+            break;
+        }
+        default:
+            break;
+    }
+}
+
 void Engine::setFractalType(const std::string& type)
 {
     _fractal.setFractalType(type);

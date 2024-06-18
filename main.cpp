@@ -37,17 +37,20 @@ int main(int argc, char **argv)
     if (argc == 2)
         engine->setFractalType(argv[1]);
 
-    engine->getFractal().colorizePixels(engine->getImage());
+    sf::Event event;
     sf::RenderWindow& window = engine->getWindow();
+    Fractal& fractal = engine->getFractal();
+    fractal.colorizePixels(engine->getImage());
+    engine->draw();
+
     while (window.isOpen())
     {
-        sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-                window.close();
+            engine->handleEvent(event);
+			//std::cout << "HELLO\n";
+            //fractal.colorizePixels(engine->getImage());
         }
-        engine->draw();
     }
     return 0;
 }

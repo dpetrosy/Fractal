@@ -12,6 +12,7 @@ public:
     static Engine* getInstance();
 
     void draw();
+    void handleEvent(sf::Event& event);
 
     void setFractalType(const std::string& type);
 

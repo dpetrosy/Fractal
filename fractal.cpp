@@ -51,6 +51,20 @@ void Fractal::setFractalType(std::string type)
         showHelpMessage();
 }
 
+void Fractal::zoomIn(int x, int y)
+{
+    _offsetX += x / _zoom - (x / (_zoom * ZOOM));
+    _offsetY += y / _zoom - (y / (_zoom * ZOOM));
+    _zoom *= ZOOM;
+}
+
+void Fractal::zoomOut(int x, int y)
+{
+    _offsetX += x / _zoom - (x / (_zoom / ZOOM));
+    _offsetY += y / _zoom - (y / (_zoom / ZOOM));
+    _zoom /= ZOOM;
+}
+
 double Fractal::getZoom()
 {
     return _zoom;
