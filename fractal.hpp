@@ -21,6 +21,11 @@ public:
     void zoomIn(int x, int y);
     void zoomOut(int x, int y);
 
+    void moveViewUp();
+    void moveViewDown();
+    void moveViewLeft();
+    void moveViewRight();
+
     double getZoom();
     double getOffsetX();
     double getOffsetY();

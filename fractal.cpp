@@ -65,6 +65,26 @@ void Fractal::zoomOut(int x, int y)
     _zoom /= ZOOM;
 }
 
+void Fractal::moveViewUp()
+{
+    _offsetY -= VIEW_CHANGE_SIZE / _zoom;
+}
+
+void Fractal::moveViewDown()
+{
+    _offsetY += VIEW_CHANGE_SIZE / _zoom;
+}
+
+void Fractal::moveViewLeft()
+{
+    _offsetX -= VIEW_CHANGE_SIZE / _zoom;
+}
+
+void Fractal::moveViewRight()
+{
+    _offsetX += VIEW_CHANGE_SIZE / _zoom;
+}
+
 double Fractal::getZoom()
 {
     return _zoom;
