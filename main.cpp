@@ -28,10 +28,28 @@ void showHelpMessage()
 	exit(EXIT_SUCCESS);
 }
 
+bool isArgsValid(int argc, char **argv)
+{
+    std::string type;
+
+    if (argc == 1)
+        return true;
+    else if (argc == 2)
+        type = argv[1];
+    else
+        return false;
+
+    std::transform(type.begin(), type.end(), type.begin(), ::tolower);
+    if (type != MandelbrotStr && type != JuliaStr &&
+        type != BurningShipStr)
+        return false;
+    return true;
+}
+
 int main(int argc, char **argv)
 {
-    if (argc != 1 && argc != 2)
-		showHelpMessage();
+    if (!isArgsValid(argc, argv))
+        showHelpMessage();		
 
     Engine* engine = Engine::getInstance();
     if (argc == 2)
@@ -46,11 +64,7 @@ int main(int argc, char **argv)
     while (window.isOpen())
     {
         while (window.pollEvent(event))
-        {
             engine->handleEvent(event);
-			//std::cout << "HELLO\n";
-            //fractal.colorizePixels(engine->getImage());
-        }
     }
     return 0;
 }

@@ -22,7 +22,7 @@ enum class FractalType
 {
     Mandelbrot = 1,
     Julia = 2,
-    Burning_Ship = 3,
+    BurningShip = 3,
 };
 
 struct ComplexNumber

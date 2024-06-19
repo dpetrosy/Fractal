@@ -1,12 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include <algorithm>
-
 #include "fractal.hpp"
 #include "fractalUtils.hpp"
 
 Fractal::Fractal()
 {
     reset();
+    setFractalType(MandelbrotStr);
 }
 
 Fractal::~Fractal()
@@ -14,7 +14,6 @@ Fractal::~Fractal()
 
 void Fractal::reset()
 {
-    _type = FractalType::Mandelbrot;
     _zoom = WINDOW_SIZE / 4;
     _mouseX = 0;
     _mouseY = 0;
@@ -22,7 +21,6 @@ void Fractal::reset()
     _offsetY = -2;
     _isJuliaLocked = false;
     _color = COLOR;
-    fractalCallback = calcMandelbrot;
 }
 
 void Fractal::colorizePixels(sf::Image& image)
@@ -46,9 +44,20 @@ void Fractal::setFractalType(std::string type)
 {
     std::transform(type.begin(), type.end(), type.begin(), ::tolower);
     if (type == MandelbrotStr)
+    {
         _type = FractalType::Mandelbrot;
-    else
-        showHelpMessage();
+        fractalCallback = calcMandelbrot;
+    }
+    else if (type == JuliaStr)
+    {
+        _type = FractalType::Julia;
+        // fractalCallback = calcJulia;
+    }
+    else if (type == BurningShipStr)
+    {
+        _type = FractalType::BurningShip;
+        fractalCallback = calcBurningShip;
+    }
 }
 
 void Fractal::zoomIn(int x, int y)
