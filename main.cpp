@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "engine.hpp"
 
 void showHelpMessage()
@@ -46,25 +45,32 @@ bool isArgsValid(int argc, char **argv)
     return true;
 }
 
-int main(int argc, char **argv)
+int main(int argc, char **argv) try
 {
     if (!isArgsValid(argc, argv))
-        showHelpMessage();		
+        showHelpMessage();
 
-    Engine* engine = Engine::getInstance();
+    Engine& engine = Engine::getInstance();
     if (argc == 2)
-        engine->setFractalType(argv[1]);
+        engine.setFractalType(argv[1]);
 
     sf::Event event;
-    sf::RenderWindow& window = engine->getWindow();
-    Fractal& fractal = engine->getFractal();
-    fractal.colorizePixels(engine->getImage());
-    engine->draw();
+    sf::RenderWindow& window = engine.getWindow();
+    engine.getFractal().colorizePixels(engine.getImage());
+    engine.draw();
 
     while (window.isOpen())
     {
         while (window.pollEvent(event))
-            engine->handleEvent(event);
+            engine.handleEvent(event);
     }
     return 0;
+}
+catch(const std::exception& e)
+{
+    std::cerr << e.what() << std::endl;
+}
+catch(...)
+{
+    std::cerr << "Unknown exception was caught." << std::endl;
 }

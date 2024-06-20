@@ -9,7 +9,8 @@
 class Engine final
 {
 public:
-    static Engine* getInstance();
+    static Engine& getInstance();
+    ~Engine();
 
     void draw();
 
@@ -29,15 +30,12 @@ public:
 
 private:
     Engine();
-    ~Engine();
-
     Engine(const Engine&) = delete;
     Engine(Engine&&) = delete;
     Engine& operator=(const Engine&) = delete;
     Engine& operator=(Engine&&) = delete;
 
 private:
-    static Engine*   _engine;
     Fractal          _fractal;
     sf::Image        _image;
     sf::Texture      _texture;

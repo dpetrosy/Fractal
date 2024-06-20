@@ -1,30 +1,38 @@
+// #include <SFML/OpenGL.hpp>
+// #include <GL/gl.h>
 #include "engine.hpp"
 
 Engine::Engine()
 {
     _image.create(WINDOW_SIZE, WINDOW_SIZE, sf::Color::Black);
+    if (!_texture.loadFromImage(_image))
+        throw std::runtime_error("Failed to create SFML image.\nTerminating the program...");
     _window.create(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), APP_NAME);
+    if (!_window.isOpen())
+        throw std::runtime_error("Failed to crate SFML window.\nTerminating the program...");
 }
 
 Engine::~Engine()
 {}
 
-Engine* Engine::getInstance()
+Engine& Engine::getInstance()
 {
-    if (_engine == nullptr)
-        _engine = new Engine();
-    return _engine;
+    static Engine engine;
+    return engine;
 }
-
-Engine* Engine::_engine = nullptr;
 
 void Engine::draw()
 {
     _window.clear();
-    _texture.loadFromImage(_image);
+    if (!_texture.loadFromImage(_image))
+        throw std::runtime_error("Failed to set pixel on image.\nTerminating the program...");
     _sprite.setTexture(_texture);
     _window.draw(_sprite);
     _window.display();
+
+    // if (glGetError() != GL_NO_ERROR)
+    //     throw std::runtime_error("Caught error from OpenGL, \
+    //     can't draw on window.\nTerminating the program...");
 }
 
 void Engine::handleEvent(const sf::Event& event)
