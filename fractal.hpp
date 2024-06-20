@@ -26,18 +26,13 @@ public:
     void moveViewLeft();
     void moveViewRight();
 
-    double getZoom();
-    double getOffsetX();
-    double getOffsetY();
-    u_int32_t getColor();
-
 private:
 	double      _zoom;
 	double      _mouseX;
 	double      _mouseY;
 	double      _offsetX;
 	double      _offsetY;
-	u_int32_t   _color;
+	RGBColor    _color;
 	FractalType _type;
 	bool        _isJuliaLocked;
     std::function<size_t(ComplexNumber&)> fractalCallback;

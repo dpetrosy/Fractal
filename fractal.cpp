@@ -20,7 +20,7 @@ void Fractal::reset()
     _offsetX = -2;
     _offsetY = -2;
     _isJuliaLocked = false;
-    _color = COLOR;
+    _color = RGBColor(0, 1, 9);
 }
 
 void Fractal::colorizePixels(sf::Image& image)
@@ -35,7 +35,7 @@ void Fractal::colorizePixels(sf::Image& image)
         {
             c.im = j / _zoom + _offsetY;
             iterCount = fractalCallback(c);
-            image.setPixel(i, j, sf::Color(iterCount, 0, 0));
+            image.setPixel(i, j, _color.toSFColor(iterCount));
         }
     }
 }
@@ -92,24 +92,4 @@ void Fractal::moveViewLeft()
 void Fractal::moveViewRight()
 {
     _offsetX += VIEW_CHANGE_SIZE / _zoom;
-}
-
-double Fractal::getZoom()
-{
-    return _zoom;
-}
-
-double Fractal::getOffsetX()
-{
-    return _offsetX;
-}
-
-double Fractal::getOffsetY()
-{
-    return _offsetY;
-}
-
-u_int32_t Fractal::getColor()
-{
-    return _color;
 }

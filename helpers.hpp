@@ -1,6 +1,7 @@
 #ifndef HELPERS_HPP
 #define HELPERS_HPP
 
+#include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
 
@@ -31,6 +32,20 @@ struct ComplexNumber
     double im = 0.0;
 };
 
-void showHelpMessage();
+struct RGBColor
+{
+    unsigned char r = 0;
+    unsigned char g = 0;
+    unsigned char b = 0;
+
+    RGBColor() = default;
+    RGBColor(unsigned char red, unsigned char green, unsigned char blue)
+        : r(red), g(green), b(blue) {}
+
+    inline sf::Color toSFColor(size_t iter) const
+    {
+        return sf::Color(r * iter, g * iter, b * iter);
+    }
+};
 
 #endif  /* HELPERS_HPP */

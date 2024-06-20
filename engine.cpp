@@ -31,14 +31,14 @@ void Engine::handleEvent(const sf::Event& event)
 {
     switch (event.type)
     {
-    case sf::Event::Closed:
-        _window.close();
-        break;
     case sf::Event::MouseWheelScrolled:
         handleMouseWheelScrolledEvent(event);
         break;
     case sf::Event::KeyPressed:
         handleKeyPressedEvent(event.key.code);
+        break;
+    case sf::Event::Closed:
+        _window.close();
         break;
     default:
         break;
