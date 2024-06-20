@@ -20,7 +20,7 @@ void Fractal::reset()
     _offsetX = -2;
     _offsetY = -2;
     _isJuliaLocked = false;
-    _color = RGBColor(0, 1, 9);
+    _color = RGBColor(RED, GREEN, BLUE);
 }
 
 void Fractal::colorizePixels(sf::Image& image)

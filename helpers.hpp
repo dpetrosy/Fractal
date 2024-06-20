@@ -12,6 +12,10 @@
 #define ZOOM 1.3
 #define VIEW_CHANGE_SIZE (WINDOW_SIZE / 15)
 
+#define RED 0
+#define GREEN 1
+#define BLUE 9
+
 namespace
 {
     const std::string MandelbrotStr = "mandelbrot";
