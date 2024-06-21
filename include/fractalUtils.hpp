@@ -5,6 +5,7 @@
 
 size_t calcMandelbrot(ComplexNumber& c);
 size_t calcBurningShip(ComplexNumber& c);
+size_t calcMultibrot(ComplexNumber& c);
 size_t calcMandelbar(ComplexNumber& c);
 
 #endif  /* FRACTAL_UTILS_HPP */

@@ -58,6 +58,11 @@ void Fractal::setFractalType(std::string type)
         _type = FractalType::BurningShip;
         fractalCallback = calcBurningShip;
     }
+    else if (type == MultibrotStr)
+    {
+        _type = FractalType::Multibrot;
+        fractalCallback = calcMultibrot;
+    }
     else if (type == MandelbarStr)
     {
         _type = FractalType::Mandelbar;

@@ -21,6 +21,7 @@ namespace
     const std::string MandelbrotStr = "mandelbrot";
     const std::string JuliaStr = "julia";
     const std::string BurningShipStr = "burning_ship";
+    const std::string MultibrotStr = "multibrot";
     const std::string MandelbarStr = "mandelbar";
 }
 
@@ -30,6 +31,7 @@ enum class FractalType
     Julia = 2,
     BurningShip = 3,
     Tricorn = 4,
+    Multibrot = 7,
     Mandelbar = 7,
 };
 
