@@ -19,6 +19,7 @@ public:
     void handleKeyPressedEvent(sf::Keyboard::Key key);
     void handleViewChangeEvent(sf::Keyboard::Key);
     void handleFractalChangeEvent(sf::Keyboard::Key key);
+    void handleColorChangeEvent(sf::Keyboard::Key key);
 
     void handleMouseWheelScrolledEvent(const sf::Event& event);
 

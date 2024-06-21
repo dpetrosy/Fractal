@@ -6,7 +6,7 @@
 #include <iostream>
 
 #define APP_NAME "Fractal"
-#define WINDOW_SIZE 500
+#define WINDOW_SIZE 1000
 #define COLOR 265
 #define MAX_ITER 200
 #define ZOOM 1.3
@@ -21,6 +21,7 @@ namespace
     const std::string MandelbrotStr = "mandelbrot";
     const std::string JuliaStr = "julia";
     const std::string BurningShipStr = "burning_ship";
+    const std::string MandelbarStr = "mandelbar";
 }
 
 enum class FractalType
@@ -28,6 +29,8 @@ enum class FractalType
     Mandelbrot = 1,
     Julia = 2,
     BurningShip = 3,
+    Tricorn = 4,
+    Mandelbar = 7,
 };
 
 struct ComplexNumber

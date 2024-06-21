@@ -58,6 +58,11 @@ void Fractal::setFractalType(std::string type)
         _type = FractalType::BurningShip;
         fractalCallback = calcBurningShip;
     }
+    else if (type == MandelbarStr)
+    {
+        _type = FractalType::Mandelbar;
+        fractalCallback = calcMandelbar;
+    }
 }
 
 void Fractal::zoomIn(int x, int y)
@@ -92,4 +97,11 @@ void Fractal::moveViewLeft()
 void Fractal::moveViewRight()
 {
     _offsetX += VIEW_CHANGE_SIZE / _zoom;
+}
+
+void Fractal::changeColor(unsigned char r, unsigned char g, unsigned char b)
+{
+    _color.r += r;
+    _color.g += g;
+    _color.b += b;
 }

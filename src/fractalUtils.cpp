@@ -30,3 +30,20 @@ size_t calcBurningShip(ComplexNumber& c)
 	}
 	return (i);
 }
+
+size_t calcMandelbar(ComplexNumber& c)
+{
+	ComplexNumber z;
+	double reSqr;
+	double imSqr;
+    size_t i = 0;
+
+	for (; (z.re * z.re + z.im * z.im < 4) && i < MAX_ITER; ++i)
+	{
+		reSqr = z.re * z.re;
+		imSqr = z.im * z.im;
+		z.re = -z.re * (reSqr*reSqr - 10*reSqr*imSqr + 5*imSqr*imSqr) + c.re;
+		z.im = z.im * (5*reSqr*reSqr - 10*reSqr*imSqr + imSqr*imSqr) + c.im;
+	}
+	return (i);
+}

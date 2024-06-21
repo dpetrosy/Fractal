@@ -69,8 +69,8 @@ void Engine::handleKeyPressedEvent(sf::Keyboard::Key key)
         handleFractalChangeEvent(key);
     else if (key == sf::Keyboard::Escape)
         _window.close();
-    //else // Color change keys
-        // HandleColorChangeEvent(key);
+    else // Color change keys
+        handleColorChangeEvent(key);
 }
 
 void Engine::handleViewChangeEvent(sf::Keyboard::Key key)
@@ -108,6 +108,24 @@ void Engine::handleFractalChangeEvent(sf::Keyboard::Key key)
         break;
     case sf::Keyboard::Num3:
         _fractal.setFractalType(BurningShipStr);
+        break;
+    default:
+        break;
+    }
+}
+
+void Engine::handleColorChangeEvent(sf::Keyboard::Key key)
+{
+    switch (key)
+    {
+    case sf::Keyboard::R:
+        _fractal.changeColor(1, 0, 0);
+        break;
+    case sf::Keyboard::G:
+        _fractal.changeColor(0, 1, 0);
+        break;
+    case sf::Keyboard::B:
+        _fractal.changeColor(0, 0, 1);
         break;
     default:
         break;

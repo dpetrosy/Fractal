@@ -26,6 +26,8 @@ public:
     void moveViewLeft();
     void moveViewRight();
 
+    void changeColor(unsigned char r, unsigned char g, unsigned char b);
+
 private:
 	double      _zoom;
 	double      _mouseX;

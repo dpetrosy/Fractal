@@ -40,7 +40,7 @@ bool isArgsValid(int argc, char **argv)
 
     std::transform(type.begin(), type.end(), type.begin(), ::tolower);
     if (type != MandelbrotStr && type != JuliaStr &&
-        type != BurningShipStr)
+        type != BurningShipStr && type != MandelbarStr)
         return false;
     return true;
 }
