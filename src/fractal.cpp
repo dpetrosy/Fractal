@@ -48,16 +48,26 @@ void Fractal::setFractalType(std::string type)
         _type = FractalType::Mandelbrot;
         fractalCallback = calcMandelbrot;
     }
-    else if (type == JuliaStr)
-    {
-        _type = FractalType::Julia;
-        // fractalCallback = calcJulia;
-    }
+    // else if (type == JuliaStr)
+    // {
+    //     _type = FractalType::Julia;
+    //     fractalCallback = calcJulia;
+    // }
     else if (type == BurningShipStr)
     {
         _type = FractalType::BurningShip;
         fractalCallback = calcBurningShip;
     }
+    else if (type == TricornStr)
+    {
+        _type = FractalType::Tricorn;
+        fractalCallback = calcTricorn;
+    }
+    // else if (type == MandelboxStr)
+    // {
+    //     _type = FractalType::Mandelbox;
+    //     fractalCallback = calcMandelbox;
+    // }
     else if (type == MultibrotStr)
     {
         _type = FractalType::Multibrot;
@@ -68,6 +78,16 @@ void Fractal::setFractalType(std::string type)
         _type = FractalType::Mandelbar;
         fractalCallback = calcMandelbar;
     }
+    // else if (type == PerBurningShipStr)
+    // {
+    //     _type = FractalType::PerBurningShip;
+    //     fractalCallback = calcPerBurningShip;
+    // }
+    // else if (type == CelticMandelbrotStr)
+    // {
+    //     _type = FractalType::CelticMandelbrot;
+    //     fractalCallback = calcCelticMandelbrot;
+    // }
 }
 
 void Fractal::zoomIn(int x, int y)

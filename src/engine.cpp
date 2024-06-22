@@ -109,6 +109,24 @@ void Engine::handleFractalChangeEvent(sf::Keyboard::Key key)
     case sf::Keyboard::Num3:
         _fractal.setFractalType(BurningShipStr);
         break;
+    case sf::Keyboard::Num4:
+        _fractal.setFractalType(TricornStr);
+        break;
+    case sf::Keyboard::Num5:
+        _fractal.setFractalType(MandelboxStr);
+        break;
+    case sf::Keyboard::Num6:
+        _fractal.setFractalType(MultibrotStr);
+        break;
+    case sf::Keyboard::Num7:
+        _fractal.setFractalType(MandelbarStr);
+        break;
+    case sf::Keyboard::Num8:
+        _fractal.setFractalType(PerBurningShipStr);
+        break;
+    case sf::Keyboard::Num9:
+        _fractal.setFractalType(CelticMandelbrotStr);
+        break;
     default:
         break;
     }
