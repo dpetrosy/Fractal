@@ -1,7 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <algorithm>
 #include "fractal.hpp"
-#include "fractalUtils.hpp"
 
 Fractal::Fractal()
 {
@@ -78,16 +77,16 @@ void Fractal::setFractalType(std::string type)
         _type = FractalType::Mandelbar;
         fractalCallback = calcMandelbar;
     }
-    // else if (type == PerBurningShipStr)
-    // {
-    //     _type = FractalType::PerBurningShip;
-    //     fractalCallback = calcPerBurningShip;
-    // }
-    // else if (type == CelticMandelbrotStr)
-    // {
-    //     _type = FractalType::CelticMandelbrot;
-    //     fractalCallback = calcCelticMandelbrot;
-    // }
+    else if (type == PerBurningShipStr)
+    {
+        _type = FractalType::PerBurningShip;
+        fractalCallback = calcPerBurningShip;
+    }
+    else if (type == CelticMandelbrotStr)
+    {
+        _type = FractalType::CelticMandelbrot;
+        fractalCallback = calcCelticMandelbrot;
+    }
 }
 
 void Fractal::zoomIn(int x, int y)

@@ -64,4 +64,14 @@ struct RGBColor
     }
 };
 
+size_t calcMandelbrot(ComplexNumber& c);
+
+size_t calcBurningShip(ComplexNumber& c);
+size_t calcTricorn(ComplexNumber& c);
+
+size_t calcMultibrot(ComplexNumber& c);
+size_t calcMandelbar(ComplexNumber& c);
+size_t calcPerBurningShip(ComplexNumber& c);
+size_t calcCelticMandelbrot(ComplexNumber& c);
+
 #endif  /* HELPERS_HPP */
