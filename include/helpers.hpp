@@ -16,6 +16,10 @@
 #define GREEN 1
 #define BLUE 9
 
+#define SCALE 2
+#define FIXED_RADIUS 1
+#define MINIMUM_RADIUS 0.5
+
 namespace
 {
     const std::string MandelbrotStr = "mandelbrot";
@@ -70,7 +74,7 @@ size_t calcMandelbrot(ComplexNumber& c);
 size_t calcJulia(ComplexNumber& c);
 size_t calcBurningShip(ComplexNumber& c);
 size_t calcTricorn(ComplexNumber& c);
-
+size_t calcMandelbox(ComplexNumber& c);
 size_t calcMultibrot(ComplexNumber& c);
 size_t calcMandelbar(ComplexNumber& c);
 size_t calcPerBurningShip(ComplexNumber& c);

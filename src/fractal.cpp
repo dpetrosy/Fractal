@@ -66,11 +66,11 @@ void Fractal::setFractalType(std::string type)
         _type = FractalType::Tricorn;
         fractalCallback = calcTricorn;
     }
-    // else if (type == MandelboxStr)
-    // {
-    //     _type = FractalType::Mandelbox;
-    //     fractalCallback = calcMandelbox;
-    // }
+    else if (type == MandelboxStr)
+    {
+        _type = FractalType::Mandelbox;
+        fractalCallback = calcMandelbox;
+    }
     else if (type == MultibrotStr)
     {
         _type = FractalType::Multibrot;
