@@ -16,6 +16,21 @@ size_t calcMandelbrot(ComplexNumber& c)
 	return (i);
 }
 
+size_t calcJulia(ComplexNumber& c)
+{
+	double        reTemp;
+	ComplexNumber z = c;
+    size_t i = 0;
+
+	for (; (z.re * z.re + z.im * z.im < 4.0) && i < MAX_ITER; ++i)
+	{
+		reTemp = z.re * z.re - z.im * z.im + c.reJulia;
+		z.im = 2.0 * z.re * z.im + c.imJulia;
+		z.re = reTemp;
+	}
+	return (i);
+}
+
 size_t calcBurningShip(ComplexNumber& c)
 {
 	double        reTemp;

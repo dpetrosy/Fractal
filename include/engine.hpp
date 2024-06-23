@@ -15,13 +15,15 @@ public:
     void draw();
 
     void handleEvent(const sf::Event& event);
+
+    void handleMouseWheelScrolledEvent(const sf::Event& event);
     
     void handleKeyPressedEvent(sf::Keyboard::Key key);
     void handleViewChangeEvent(sf::Keyboard::Key);
     void handleFractalChangeEvent(sf::Keyboard::Key key);
     void handleColorChangeEvent(sf::Keyboard::Key key);
 
-    void handleMouseWheelScrolledEvent(const sf::Event& event);
+    void handleMouseMovedEvent(const sf::Event& event);
 
     void setFractalType(const std::string& type);
 

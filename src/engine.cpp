@@ -1,15 +1,13 @@
-// #include <SFML/OpenGL.hpp>
-// #include <GL/gl.h>
 #include "engine.hpp"
 
 Engine::Engine()
 {
     _image.create(WINDOW_SIZE, WINDOW_SIZE, sf::Color::Black);
     if (!_texture.loadFromImage(_image))
-        throw std::runtime_error("Failed to create SFML image.\nTerminating the program...");
+        throw std::runtime_error("-- Failed to create SFML image.\n-- Terminating the program...");
     _window.create(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), APP_NAME);
     if (!_window.isOpen())
-        throw std::runtime_error("Failed to crate SFML window.\nTerminating the program...");
+        throw std::runtime_error("-- Failed to crate SFML window.\n-- Terminating the program...");
 }
 
 Engine::~Engine()
@@ -21,18 +19,16 @@ Engine& Engine::getInstance()
     return engine;
 }
 
+// TODO: Add check for draw and dispaly functions
 void Engine::draw()
 {
+    _fractal.colorizePixels(_image);
     _window.clear();
     if (!_texture.loadFromImage(_image))
-        throw std::runtime_error("Failed to set pixel on image.\nTerminating the program...");
+        throw std::runtime_error("-- Failed to set pixel on image.\n-- Terminating the program...");
     _sprite.setTexture(_texture);
     _window.draw(_sprite);
     _window.display();
-
-    // if (glGetError() != GL_NO_ERROR)
-    //     throw std::runtime_error("Caught error from OpenGL, \
-    //     can't draw on window.\nTerminating the program...");
 }
 
 void Engine::handleEvent(const sf::Event& event)
@@ -45,6 +41,9 @@ void Engine::handleEvent(const sf::Event& event)
     case sf::Event::KeyPressed:
         handleKeyPressedEvent(event.key.code);
         break;
+    case sf::Event::MouseMoved:
+        handleMouseMovedEvent(event);
+        break;
     case sf::Event::Closed:
         _window.close();
         break;
@@ -52,12 +51,24 @@ void Engine::handleEvent(const sf::Event& event)
         break;
     }
 
-    if (event.type == sf::Event::MouseWheelScrolled || 
-        event.type == sf::Event::KeyPressed)
+    if (event.type == sf::Event::MouseWheelScrolled ||
+        event.type == sf::Event::KeyPressed ||
+        (_fractal.isNeedToHandleMouseMoved() &&
+        event.type == sf::Event::MouseMoved))
     {
-        _fractal.colorizePixels(_image);
         draw();
     }
+}
+
+void Engine::handleMouseWheelScrolledEvent(const sf::Event& event)
+{
+    int x = event.mouseWheelScroll.x;
+    int y = event.mouseWheelScroll.y;
+
+    if (event.mouseWheelScroll.delta > 0) // Zoom-in
+        _fractal.zoomIn(x, y);
+    else // Zoom-out
+        _fractal.zoomOut(x, y);
 }
 
 void Engine::handleKeyPressedEvent(sf::Keyboard::Key key)
@@ -67,6 +78,8 @@ void Engine::handleKeyPressedEvent(sf::Keyboard::Key key)
         handleViewChangeEvent(key);
     else if (key >= sf::Keyboard::Num0 && key <= sf::Keyboard::Num9)
         handleFractalChangeEvent(key);
+    else if (key == sf::Keyboard::L)
+        _fractal.switchJuliaLock();
     else if (key == sf::Keyboard::Escape)
         _window.close();
     else // Color change keys
@@ -150,15 +163,9 @@ void Engine::handleColorChangeEvent(sf::Keyboard::Key key)
     }
 }
 
-void Engine::handleMouseWheelScrolledEvent(const sf::Event& event)
+void Engine::handleMouseMovedEvent(const sf::Event& event)
 {
-    int x = event.mouseWheelScroll.x;
-    int y = event.mouseWheelScroll.y;
-
-    if (event.mouseWheelScroll.delta > 0) // Zoom-in
-        _fractal.zoomIn(x, y);
-    else // Zoom-out
-        _fractal.zoomOut(x, y);
+    _fractal.setMouseCoords(event.mouseMove.x, event.mouseMove.y);
 }
 
 void Engine::setFractalType(const std::string& type)

@@ -59,7 +59,6 @@ int main(int argc, char **argv) try
 
     sf::Event event;
     sf::RenderWindow& window = engine.getWindow();
-    engine.getFractal().colorizePixels(engine.getImage());
     engine.draw();
 
     while (window.isOpen())
@@ -75,5 +74,5 @@ catch(const std::exception& e)
 }
 catch(...)
 {
-    std::cerr << "Unknown exception was caught." << std::endl;
+    std::cerr << "-- Unknown exception was caught." << std::endl;
 }

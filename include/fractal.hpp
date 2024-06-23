@@ -17,6 +17,7 @@ public:
     void reset();
     void colorizePixels(sf::Image& image);
     void setFractalType(std::string type);
+    bool isNeedToHandleMouseMoved();
 
     void zoomIn(int x, int y);
     void zoomOut(int x, int y);
@@ -27,6 +28,10 @@ public:
     void moveViewRight();
 
     void changeColor(unsigned char r, unsigned char g, unsigned char b);
+
+    void setMouseCoords(int x, int y);
+
+    void switchJuliaLock();
 
 private:
 	double      _zoom;

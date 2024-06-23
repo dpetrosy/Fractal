@@ -46,6 +46,8 @@ struct ComplexNumber
 {
     double re = 0.0;
     double im = 0.0;
+    double reJulia = 0.0;
+    double imJulia = 0.0;
 };
 
 struct RGBColor
@@ -65,7 +67,7 @@ struct RGBColor
 };
 
 size_t calcMandelbrot(ComplexNumber& c);
-
+size_t calcJulia(ComplexNumber& c);
 size_t calcBurningShip(ComplexNumber& c);
 size_t calcTricorn(ComplexNumber& c);
 

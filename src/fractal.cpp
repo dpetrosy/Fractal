@@ -25,14 +25,18 @@ void Fractal::reset()
 void Fractal::colorizePixels(sf::Image& image)
 {
     size_t iterCount;
-	ComplexNumber c;
+	static ComplexNumber c;
 
     for (int i = 0; i < WINDOW_SIZE; ++i)
     {
         c.re = i / _zoom + _offsetX;
+        if (_type == FractalType::Julia && !_isJuliaLocked)
+            c.reJulia = _mouseX / _zoom + _offsetX;
         for (int j = 0; j < WINDOW_SIZE; ++j)
         {
             c.im = j / _zoom + _offsetY;
+            if (_type == FractalType::Julia && !_isJuliaLocked)
+                c.imJulia = _mouseY / _zoom + _offsetY;
             iterCount = fractalCallback(c);
             image.setPixel(i, j, _color.toSFColor(iterCount));
         }
@@ -47,11 +51,11 @@ void Fractal::setFractalType(std::string type)
         _type = FractalType::Mandelbrot;
         fractalCallback = calcMandelbrot;
     }
-    // else if (type == JuliaStr)
-    // {
-    //     _type = FractalType::Julia;
-    //     fractalCallback = calcJulia;
-    // }
+    else if (type == JuliaStr)
+    {
+        _type = FractalType::Julia;
+        fractalCallback = calcJulia;
+    }
     else if (type == BurningShipStr)
     {
         _type = FractalType::BurningShip;
@@ -87,6 +91,11 @@ void Fractal::setFractalType(std::string type)
         _type = FractalType::CelticMandelbrot;
         fractalCallback = calcCelticMandelbrot;
     }
+}
+
+bool Fractal::isNeedToHandleMouseMoved()
+{
+    return (_type == FractalType::Julia && !_isJuliaLocked);
 }
 
 void Fractal::zoomIn(int x, int y)
@@ -128,4 +137,18 @@ void Fractal::changeColor(unsigned char r, unsigned char g, unsigned char b)
     _color.r += r;
     _color.g += g;
     _color.b += b;
+}
+
+void Fractal::setMouseCoords(int x, int y)
+{
+    if (_type == FractalType::Julia && !_isJuliaLocked)
+    {
+        _mouseX = x;
+        _mouseY = y;
+    }
+}
+
+void Fractal::switchJuliaLock()
+{
+    _isJuliaLocked = !_isJuliaLocked;
 }
