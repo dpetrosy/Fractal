@@ -115,30 +115,39 @@ void Engine::handleFractalChangeEvent(sf::Keyboard::Key key)
     {
     case sf::Keyboard::Num1:
         _fractal.setFractalType(MandelbrotStr);
+        _window.setTitle("Mandelbrot");
         break;
     case sf::Keyboard::Num2:
         _fractal.setFractalType(JuliaStr);
+        _window.setTitle("Julia");
         break;
     case sf::Keyboard::Num3:
         _fractal.setFractalType(BurningShipStr);
+        _window.setTitle("Burning Ship");
         break;
     case sf::Keyboard::Num4:
         _fractal.setFractalType(TricornStr);
+        _window.setTitle("Tricorn");
         break;
     case sf::Keyboard::Num5:
         _fractal.setFractalType(MandelboxStr);
+        _window.setTitle("Mandelbox");
         break;
     case sf::Keyboard::Num6:
         _fractal.setFractalType(MultibrotStr);
+        _window.setTitle("Multibrot");
         break;
     case sf::Keyboard::Num7:
         _fractal.setFractalType(MandelbarStr);
+        _window.setTitle("Mandelbar");
         break;
     case sf::Keyboard::Num8:
         _fractal.setFractalType(PerBurningShipStr);
+        _window.setTitle("Perpendicular Burning Ship");
         break;
     case sf::Keyboard::Num9:
         _fractal.setFractalType(CelticMandelbrotStr);
+        _window.setTitle("Celtic Mandelbrot");
         break;
     default:
         break;
@@ -166,11 +175,6 @@ void Engine::handleColorChangeEvent(sf::Keyboard::Key key)
 void Engine::handleMouseMovedEvent(const sf::Event& event)
 {
     _fractal.setMouseCoords(event.mouseMove.x, event.mouseMove.y);
-}
-
-void Engine::setFractalType(const std::string& type)
-{
-    _fractal.setFractalType(type);
 }
 
 Fractal& Engine::getFractal()

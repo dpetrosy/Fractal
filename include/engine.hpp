@@ -25,8 +25,6 @@ public:
 
     void handleMouseMovedEvent(const sf::Event& event);
 
-    void setFractalType(const std::string& type);
-
     Fractal& getFractal();
     sf::Image& getImage();
     sf::RenderWindow& getWindow();

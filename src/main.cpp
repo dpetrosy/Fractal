@@ -57,11 +57,11 @@ int main(int argc, char **argv) try
 
     Engine& engine = Engine::getInstance();
     if (argc == 2)
-        engine.setFractalType(argv[1]);
+        engine.getFractal().setFractalType(argv[1]);
 
     sf::Event event;
-    sf::RenderWindow& window = engine.getWindow();
     engine.draw();
+    sf::RenderWindow& window = engine.getWindow();
 
     while (window.isOpen())
     {
