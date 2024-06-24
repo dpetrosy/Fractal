@@ -19,11 +19,10 @@ Engine& Engine::getInstance()
     return engine;
 }
 
-// TODO: Add check for draw and dispaly functions
 void Engine::draw()
 {
     _fractal.colorizePixels(_image);
-    _window.clear();
+    _window.clear(sf::Color::Black);
     if (!_texture.loadFromImage(_image))
         throw std::runtime_error("-- Failed to set pixel on image.\n-- Terminating the program...");
     _sprite.setTexture(_texture);
@@ -187,11 +186,6 @@ void Engine::handleMouseMovedEvent(const sf::Event& event)
 Fractal& Engine::getFractal()
 {
     return _fractal;
-}
-
-sf::Image& Engine::getImage()
-{
-    return _image;
 }
 
 sf::RenderWindow& Engine::getWindow()

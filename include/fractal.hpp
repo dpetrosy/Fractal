@@ -17,22 +17,27 @@ public:
     void reset();
     void colorizePixels(sf::Image& image);
     void setFractalType(std::string type);
-    void setColor(unsigned char r, unsigned char g, unsigned char b);
-    bool isNeedToHandleMouseMoved();
 
+    // Zoom event handlers
     void zoomIn(int x, int y);
     void zoomOut(int x, int y);
 
+    // Viewpoint moved event handlers
     void moveViewUp();
     void moveViewDown();
     void moveViewLeft();
     void moveViewRight();
 
+    // Color changed event handlers
+    void setColor(unsigned char r, unsigned char g, unsigned char b);
     void changeColor(unsigned char r, unsigned char g, unsigned char b);
 
+    // Julia's fractal events handlers
     void setMouseCoords(int x, int y);
-
+    bool isNeedToHandleMouseMoved();
     void switchJuliaLock();
+
+    typedef std::function<size_t(ComplexNumber&)> CalcCallback;
 
 private:
 	double      _zoom;
@@ -43,7 +48,7 @@ private:
 	RGBColor    _color;
 	FractalType _type;
 	bool        _isJuliaLocked;
-    std::function<size_t(ComplexNumber&)> fractalCallback;
+    CalcCallback fractalCallback;
 };
 
 #endif  /* FRACTAL_HPP */

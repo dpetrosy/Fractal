@@ -3,14 +3,15 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
-#include <iostream>
 
+// Application defines
 #define APP_NAME "Fractal"
 #define WINDOW_SIZE 500
 #define MAX_ITER 200
 #define ZOOM 1.3
 #define VIEW_CHANGE_SIZE (WINDOW_SIZE / 15)
 
+// RGB color defines
 #define RED 0
 #define GREEN 1
 #define BLUE 9
@@ -20,6 +21,7 @@
 // #define GREEN 0
 // #define BLUE 205
 
+// Mandelbox fractal defines
 #define SCALE 2
 #define FIXED_RADIUS 1
 #define MINIMUM_RADIUS 0.5
@@ -74,10 +76,12 @@ struct RGBColor
     }
 };
 
+// Util functions
 void showHelpMessage();
 bool isArgsValid(int argc, char **argv);
 int  getRandomValue(int start, int end);
 
+// Fractal calculating functions
 size_t calcMandelbrot(ComplexNumber& c);
 size_t calcJulia(ComplexNumber& c);
 size_t calcBurningShip(ComplexNumber& c);

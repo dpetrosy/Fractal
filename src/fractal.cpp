@@ -1,5 +1,3 @@
-#include <SFML/Graphics.hpp>
-#include <algorithm>
 #include "fractal.hpp"
 
 Fractal::Fractal()
@@ -14,11 +12,11 @@ Fractal::~Fractal()
 
 void Fractal::reset()
 {
-    _zoom = WINDOW_SIZE / 4;
     _mouseX = 0;
     _mouseY = 0;
     _offsetX = -2;
     _offsetY = -2;
+    _zoom = WINDOW_SIZE / 4;
     _isJuliaLocked = false;
 }
 
@@ -93,18 +91,6 @@ void Fractal::setFractalType(std::string type)
     }
 }
 
-void Fractal::setColor(unsigned char r, unsigned char g, unsigned char b)
-{
-    _color.r = r;
-    _color.g = g;
-    _color.b = b;
-}
-
-bool Fractal::isNeedToHandleMouseMoved()
-{
-    return (_type == FractalType::Julia && !_isJuliaLocked);
-}
-
 void Fractal::zoomIn(int x, int y)
 {
     _offsetX += x / _zoom - (x / (_zoom * ZOOM));
@@ -139,6 +125,13 @@ void Fractal::moveViewRight()
     _offsetX += VIEW_CHANGE_SIZE / _zoom;
 }
 
+void Fractal::setColor(unsigned char r, unsigned char g, unsigned char b)
+{
+    _color.r = r;
+    _color.g = g;
+    _color.b = b;
+}
+
 void Fractal::changeColor(unsigned char r, unsigned char g, unsigned char b)
 {
     _color.r += r;
@@ -148,11 +141,16 @@ void Fractal::changeColor(unsigned char r, unsigned char g, unsigned char b)
 
 void Fractal::setMouseCoords(int x, int y)
 {
-    if (_type == FractalType::Julia && !_isJuliaLocked)
+    if (isNeedToHandleMouseMoved())
     {
         _mouseX = x;
         _mouseY = y;
     }
+}
+
+bool Fractal::isNeedToHandleMouseMoved()
+{
+    return (_type == FractalType::Julia && !_isJuliaLocked);
 }
 
 void Fractal::switchJuliaLock()

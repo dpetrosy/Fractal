@@ -2,8 +2,6 @@
 #define ENGINE_HPP
 
 #include <SFML/Graphics.hpp>
-#include <string>
-
 #include "fractal.hpp"
 
 class Engine final
@@ -14,19 +12,16 @@ public:
 
     void draw();
 
+    // Event handlers
     void handleEvent(const sf::Event& event);
-
     void handleMouseWheelScrolledEvent(const sf::Event& event);
-    
     void handleKeyPressedEvent(sf::Keyboard::Key key);
     void handleViewChangeEvent(sf::Keyboard::Key);
     void handleFractalChangeEvent(sf::Keyboard::Key key);
     void handleColorChangeEvent(sf::Keyboard::Key key);
-
     void handleMouseMovedEvent(const sf::Event& event);
 
     Fractal& getFractal();
-    sf::Image& getImage();
     sf::RenderWindow& getWindow();
 
 private:

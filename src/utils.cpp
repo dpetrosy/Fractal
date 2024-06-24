@@ -1,4 +1,5 @@
 #include <random>
+#include <iostream>
 #include "helpers.hpp"
 
 void showHelpMessage()
