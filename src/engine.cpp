@@ -113,6 +113,9 @@ void Engine::handleFractalChangeEvent(sf::Keyboard::Key key)
 
     switch (key)
     {
+    case sf::Keyboard::Num0:
+        _fractal.setColor(RED, GREEN, BLUE);
+        break;
     case sf::Keyboard::Num1:
         _fractal.setFractalType(MandelbrotStr);
         _window.setTitle("Mandelbrot");
@@ -166,6 +169,10 @@ void Engine::handleColorChangeEvent(sf::Keyboard::Key key)
         break;
     case sf::Keyboard::B:
         _fractal.changeColor(0, 0, 1);
+        break;
+    case sf::Keyboard::C:
+        _fractal.setColor(getRandomValue(0, 255),
+            getRandomValue(0, 255), getRandomValue(0, 255));
         break;
     default:
         break;

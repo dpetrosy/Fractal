@@ -15,6 +15,11 @@
 #define GREEN 1
 #define BLUE 9
 
+// Mediumblue
+// #define RED 0
+// #define GREEN 0
+// #define BLUE 205
+
 #define SCALE 2
 #define FIXED_RADIUS 1
 #define MINIMUM_RADIUS 0.5
@@ -68,6 +73,10 @@ struct RGBColor
         return sf::Color(r * iter, g * iter, b * iter);
     }
 };
+
+void showHelpMessage();
+bool isArgsValid(int argc, char **argv);
+int  getRandomValue(int start, int end);
 
 size_t calcMandelbrot(ComplexNumber& c);
 size_t calcJulia(ComplexNumber& c);

@@ -17,6 +17,7 @@ public:
     void reset();
     void colorizePixels(sf::Image& image);
     void setFractalType(std::string type);
+    void setColor(unsigned char r, unsigned char g, unsigned char b);
     bool isNeedToHandleMouseMoved();
 
     void zoomIn(int x, int y);

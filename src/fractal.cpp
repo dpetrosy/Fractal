@@ -5,6 +5,7 @@
 Fractal::Fractal()
 {
     reset();
+    setColor(RED, GREEN, BLUE);
     setFractalType(MandelbrotStr);
 }
 
@@ -19,7 +20,6 @@ void Fractal::reset()
     _offsetX = -2;
     _offsetY = -2;
     _isJuliaLocked = false;
-    _color = RGBColor(RED, GREEN, BLUE);
 }
 
 void Fractal::colorizePixels(sf::Image& image)
@@ -91,6 +91,13 @@ void Fractal::setFractalType(std::string type)
         _type = FractalType::CelticMandelbrot;
         fractalCallback = calcCelticMandelbrot;
     }
+}
+
+void Fractal::setColor(unsigned char r, unsigned char g, unsigned char b)
+{
+    _color.r = r;
+    _color.g = g;
+    _color.b = b;
 }
 
 bool Fractal::isNeedToHandleMouseMoved()
