@@ -6,8 +6,9 @@
 
 // Application defines
 #define APP_NAME "Fractal"
-#define WINDOW_SIZE 500
-#define MAX_ITER 200
+#define THREADS_COUNT 20
+#define WINDOW_SIZE 800
+#define MAX_ITER 1000
 #define ZOOM 1.3
 #define VIEW_CHANGE_SIZE (WINDOW_SIZE / 15)
 

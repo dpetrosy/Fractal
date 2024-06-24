@@ -1,3 +1,5 @@
+#include <thread>
+#include <vector>
 #include "fractal.hpp"
 
 Fractal::Fractal()
@@ -22,23 +24,41 @@ void Fractal::reset()
 
 void Fractal::colorizePixels(sf::Image& image)
 {
-    size_t iterCount;
-	static ComplexNumber c;
+    int range = WINDOW_SIZE / THREADS_COUNT;
+    std::vector<std::thread> threads;
 
-    for (int i = 0; i < WINDOW_SIZE; ++i)
+    auto worker = [&](int start, int end)
     {
-        c.re = i / _zoom + _offsetX;
-        if (_type == FractalType::Julia && !_isJuliaLocked)
-            c.reJulia = _mouseX / _zoom + _offsetX;
-        for (int j = 0; j < WINDOW_SIZE; ++j)
+        size_t iterCount;
+        ComplexNumber c;
+
+        for (int i = start; i < end; ++i)
         {
-            c.im = j / _zoom + _offsetY;
+            c.re = i / _zoom + _offsetX;
             if (_type == FractalType::Julia && !_isJuliaLocked)
-                c.imJulia = _mouseY / _zoom + _offsetY;
-            iterCount = fractalCallback(c);
-            image.setPixel(i, j, _color.toSFColor(iterCount));
+                c.reJulia = _mouseX / _zoom + _offsetX;
+            for (int j = 0; j < WINDOW_SIZE; ++j)
+            {
+                c.im = j / _zoom + _offsetY;
+                if (_type == FractalType::Julia && !_isJuliaLocked)
+                    c.imJulia = _mouseY / _zoom + _offsetY;
+                iterCount = fractalCallback(c);
+                image.setPixel(i, j, _color.toSFColor(iterCount));
+            }
         }
+    };
+
+    for (int i = 0; i < THREADS_COUNT; ++i)
+    {
+        int start = i * range;
+        int end = (i + 1) * range;
+        if (i == THREADS_COUNT - 1)
+            end = WINDOW_SIZE;
+        threads.emplace_back(worker, start, end);
     }
+
+    for (auto& thread : threads)
+        thread.join();
 }
 
 void Fractal::setFractalType(std::string type)
