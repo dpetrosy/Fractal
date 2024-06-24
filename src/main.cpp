@@ -4,25 +4,27 @@
 void showHelpMessage()
 {
 	std::cout << R"(
-        +------------------ Let me help you! ---------------------+
-        |                                                         |
-        | Usage: ./fractol [mandelbrot / julia / burning_ship     |
-        |                   tricorn / mandelbox /                 |
-        |                   celtic_mandelbar]                     |
-        |                                                         |
-        | e.g: ./fractol mandelbrot                               |
-        |                                                         |
-        |----------------------- KEYBOARD ------------------------|
-        |                                                         |
-        | Press ESC to close the window                           |
-        | Press one of [1-6] to move to another fractal           |
-        | Press one of [Q-Y] keys to change the color of fractal  |
-        | Press one of [A-H] keys to change the color of fractal  |
-        | Use mouse scroll to zoom in and out of the fractal      |
-        | Press the arrow keys to change the viewpoint            |
-        | Press L to lock Julia's fractal                         |
-        | Press Zero to reset the fractal                         |
-        +---------------------------------------------------------+
+    +------------------ Let me help you! ---------------------+
+    |                                                         |
+    | Usage: ./fractal [mandelbrot / julia / burning_ship /   |
+    |                   tricorn / mandelbox / multibrot /     |
+    |                   mandelbar / per_burning_ship /        |
+    |                   celtic_mandelbrot]                    |
+    |                                                         |
+    | e.g: ./fractal mandelbrot                               |
+    |                                                         |
+    |----------------------- KEYBOARD ------------------------|
+    |                                                         |
+    | Press ESC to close the window                           |
+    | Press one of [1-9] to change the fractal                |
+    | Press R key to change the red component of fractal      |
+    | Press G key to change the green component of fractal    |
+    | Press B key to change the blue component of fractal     |
+    | Use mouse scroll to zoom in and out of the fractal      |
+    | Press the arrow keys to change the viewpoint            |
+    | Press L to lock Julia's fractal                         |
+    | Press Zero to reset the fractal                         |
+    +---------------------------------------------------------+
         )" << std::endl;
 	exit(EXIT_SUCCESS);
 }
