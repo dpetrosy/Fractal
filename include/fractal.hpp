@@ -1,6 +1,7 @@
 #ifndef FRACTAL_HPP
 #define FRACTAL_HPP
 
+#include <functional>
 #include "helpers.hpp"
 
 class Fractal

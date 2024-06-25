@@ -33,3 +33,5 @@
 
 .vscode
 .DS_STORE
+release
+debug
