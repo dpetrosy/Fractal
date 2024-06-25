@@ -27,21 +27,23 @@ void Fractal::colorizePixels(sf::Image& image)
     int range = WINDOW_SIZE / THREADS_COUNT;
     std::vector<std::thread> threads;
 
+    if (_type == FractalType::Julia && !_isJuliaLocked)
+    {
+        _c.imJulia = _mouseY / _zoom + _offsetY;
+        _c.reJulia = _mouseX / _zoom + _offsetX;
+    }
+
     auto worker = [&](int start, int end)
     {
         size_t iterCount;
-        ComplexNumber c;
+        ComplexNumber c = _c;
 
         for (int i = start; i < end; ++i)
         {
             c.re = i / _zoom + _offsetX;
-            if (_type == FractalType::Julia && !_isJuliaLocked)
-                c.reJulia = _mouseX / _zoom + _offsetX;
             for (int j = 0; j < WINDOW_SIZE; ++j)
             {
-                c.im = j / _zoom + _offsetY;
-                if (_type == FractalType::Julia && !_isJuliaLocked)
-                    c.imJulia = _mouseY / _zoom + _offsetY;
+                c.im = j / _zoom + _offsetY;                    
                 iterCount = fractalCallback(c);
                 image.setPixel(i, j, _color.toSFColor(iterCount));
             }

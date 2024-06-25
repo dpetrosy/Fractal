@@ -32,10 +32,10 @@ private:
     Engine& operator=(Engine&&) = delete;
 
 private:
-    Fractal          _fractal;
-    sf::Image        _image;
-    sf::Texture      _texture;
-    sf::Sprite       _sprite;
+    Fractal _fractal;
+    sf::Image _image;
+    sf::Texture _texture;
+    sf::Sprite _sprite;
     sf::RenderWindow _window;
 };
 

@@ -40,14 +40,15 @@ public:
     typedef std::function<size_t(ComplexNumber&)> CalcCallback;
 
 private:
-	double      _zoom;
-	double      _mouseX;
-	double      _mouseY;
-	double      _offsetX;
-	double      _offsetY;
-	RGBColor    _color;
+	double _zoom;
+	double _mouseX;
+	double _mouseY;
+	double _offsetX;
+	double _offsetY;
+	RGBColor _color;
 	FractalType _type;
-	bool        _isJuliaLocked;
+    ComplexNumber _c;
+	bool _isJuliaLocked;
     CalcCallback fractalCallback;
 };
 

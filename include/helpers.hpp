@@ -12,10 +12,35 @@
 #define ZOOM 1.3
 #define VIEW_CHANGE_SIZE (WINDOW_SIZE / 15)
 
-// RGB color defines
-#define RED 0
-#define GREEN 1
-#define BLUE 9
+// Red
+#define RED 21
+#define GREEN 0
+#define BLUE 0
+
+// Cyan
+// #define RED 0
+// #define GREEN 21
+// #define BLUE 21
+
+// Yellow
+// #define RED 21
+// #define GREEN 21
+// #define BLUE 0
+
+// Magenda
+// #define RED 21
+// #define GREEN 0
+// #define BLUE 21
+
+// Gray
+// #define RED 21
+// #define GREEN 21
+// #define BLUE 21
+
+// Dark Purple
+// #define RED 48
+// #define GREEN 25
+// #define BLUE 52
 
 // Mediumblue
 // #define RED 0
