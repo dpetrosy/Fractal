@@ -24,6 +24,15 @@ void Fractal::reset()
 
 void Fractal::colorizePixels(sf::Image& image)
 {
+    #ifdef CUDA_AVAILABLE
+        colorizePixelsByGPU(image, *this);
+    #else
+        colorizePixelsByCPU(image);
+    #endif
+}
+
+void Fractal::colorizePixelsByCPU(sf::Image& image)
+{
     int range = WINDOW_SIZE / THREADS_COUNT;
     std::vector<std::thread> threads;
 
@@ -43,7 +52,7 @@ void Fractal::colorizePixels(sf::Image& image)
             c.re = i / _zoom + _offsetX;
             for (int j = 0; j < WINDOW_SIZE; ++j)
             {
-                c.im = j / _zoom + _offsetY;                    
+                c.im = j / _zoom + _offsetY;
                 iterCount = fractalCallback(c);
                 image.setPixel(i, j, _color.toSFColor(iterCount));
             }
@@ -178,4 +187,44 @@ bool Fractal::isNeedToHandleMouseMoved()
 void Fractal::switchJuliaLock()
 {
     _isJuliaLocked = !_isJuliaLocked;
+}
+
+double Fractal::getZoom()
+{
+    return _zoom;
+}
+
+double Fractal::getMouseX()
+{
+    return _mouseX;
+}
+
+double Fractal::getMouseY()
+{
+    return _mouseY;
+}
+
+double Fractal::getOffsetX()
+{
+    return _offsetX;
+}
+
+double Fractal::getOffsetY()
+{
+    return _offsetY;
+}
+
+RGBColor& Fractal::getColor()
+{
+    return _color;
+}
+
+FractalType Fractal::getType()
+{
+    return _type;
+}
+
+ComplexNumber& Fractal::getC()
+{
+    return _c;
 }

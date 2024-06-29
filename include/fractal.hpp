@@ -17,6 +17,7 @@ public:
 
     void reset();
     void colorizePixels(sf::Image& image);
+    void colorizePixelsByCPU(sf::Image& image);
     void setFractalType(std::string type);
 
     // Zoom event handlers
@@ -37,6 +38,16 @@ public:
     void setMouseCoords(int x, int y);
     bool isNeedToHandleMouseMoved();
     void switchJuliaLock();
+
+    // Getters
+    double getZoom();
+    double getMouseX();
+    double getMouseY();
+    double getOffsetX();
+    double getOffsetY();
+    RGBColor& getColor();
+    FractalType getType();
+    ComplexNumber& getC();
 
     typedef std::function<size_t(ComplexNumber&)> CalcCallback;
 

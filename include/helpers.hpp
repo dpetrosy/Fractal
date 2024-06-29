@@ -6,7 +6,7 @@
 
 // Application defines
 #define APP_NAME "Fractal"
-#define THREADS_COUNT 20
+#define THREADS_COUNT 40
 #define WINDOW_SIZE 800
 #define MAX_ITER 1000
 #define ZOOM 1.3
@@ -117,5 +117,8 @@ size_t calcMultibrot(ComplexNumber& c);
 size_t calcMandelbar(ComplexNumber& c);
 size_t calcPerBurningShip(ComplexNumber& c);
 size_t calcCelticMandelbrot(ComplexNumber& c);
+
+class Fractal;
+void colorizePixelsByGPU(sf::Image& image, Fractal& fractal);
 
 #endif  /* HELPERS_HPP */
