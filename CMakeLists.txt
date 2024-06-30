@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.24)
 
-project(Fractal LANGUAGES C CXX CUDA)
+project(Fractal)
+set(EXECUTABLE "fractal")
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -12,51 +13,48 @@ include_directories(include)
 file(GLOB_RECURSE CPP_SOURCES "src/*.cpp")
 file(GLOB_RECURSE CUDA_SOURCES "src/*.cu")
 
-add_library(CPP_OBJECTS OBJECT ${CPP_SOURCES})
+include(CheckLanguage)
+check_language(CUDA)
 
-find_package(CUDA REQUIRED)
+# set(CMAKE_CUDA_COMPILER OFF)
 
-if(CUDA_FOUND AND CUDA_VERSION VERSION_GREATER_EQUAL "12.5")
-    message(STATUS "CUDA found: ${CUDA_VERSION}")
+if(CMAKE_CUDA_COMPILER AND CMAKE_VERSION VERSION_GREATER_EQUAL 3.24)
+    enable_language(CUDA)
+
+    if(NOT DEFINED CMAKE_CUDA_STANDARD)
+        set(CMAKE_CUDA_STANDARD 11)
+        set(CMAKE_CUDA_STANDARD_REQUIRED True)
+    endif()
+
+    add_executable(${EXECUTABLE} ${CPP_SOURCES} ${CUDA_SOURCES})
+
+    set_target_properties(${EXECUTABLE}
+    PROPERTIES
+    CUDA_SEPARABLE_COMPILATION ON
+    CUDA_ARCHITECTURES native
+    )
 
     add_definitions(-DCUDA_AVAILABLE)
-
-    cuda_select_nvcc_arch_flags(CUDA_ARCH_FLAGS)
-    list(APPEND CUDA_NVCC_FLAGS ${CUDA_ARCH_FLAGS})
-
-    list(APPEND CUDA_NVCC_FLAGS " -dc")
-
-    include_directories(${CUDA_INCLUDE_DIRS})
-
-    cuda_compile(CUDA_OBJECTS ${CUDA_SOURCES} OPTIONS ${CUDA_NVCC_FLAGS})
-
-    add_executable(fractal
-        $<TARGET_OBJECTS:CPP_OBJECTS>
-        ${CUDA_OBJECTS}
-    )
-
-    set_target_properties(fractal
-    PROPERTIES
-        CUDA_SEPARABLE_COMPILATION ON
-        CUDA_RESOLVE_DEVICE_SYMBOLS ON
-    )
-
-    target_link_libraries(fractal PRIVATE sfml-system sfml-window sfml-graphics ${CUDA_LIBRARIES})
 else()
-    if(CUDA_FOUND)
-        message(WARNING "CUDA version ${CUDA_VERSION} found, but version 12.5 or higher is required. Compiling without CUDA support.")
+    if (CMAKE_CUDA_COMPILER)
+        message(STATUS "Cmake minimum version required for CUDA support is 3.24.")
+        message(STATUS "CMake version: ${CMAKE_VERSION}")
+        message(STATUS "Compiling without CUDA support.")
     else()
         message(STATUS "CUDA not found. Compiling without CUDA support.")
     endif()
 
-    add_executable(fractal
-        $<TARGET_OBJECTS:CPP_OBJECTS>
-    )
-
-    target_link_libraries(fractal PRIVATE sfml-system sfml-window sfml-graphics)
+    add_executable(${EXECUTABLE} ${CPP_SOURCES})
 endif()
 
-set_target_properties(fractal PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/../debug
+target_link_libraries(${EXECUTABLE} PRIVATE sfml-system sfml-window sfml-graphics)
+
+target_compile_options(${EXECUTABLE} PRIVATE
+    $<$<CONFIG:Release>:-O3>
+    $<$<CONFIG:Debug>:-g3>
+)
+
+set_target_properties(${EXECUTABLE} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/../release
+    RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/../debug
 )
