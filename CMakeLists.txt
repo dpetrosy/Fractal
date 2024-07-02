@@ -18,6 +18,7 @@ check_language(CUDA)
 
 # set(CMAKE_CUDA_COMPILER OFF)
 
+# Check if CUDA is available on the current platform
 if(CMAKE_CUDA_COMPILER AND CMAKE_VERSION VERSION_GREATER_EQUAL 3.24)
     enable_language(CUDA)
 
@@ -29,9 +30,9 @@ if(CMAKE_CUDA_COMPILER AND CMAKE_VERSION VERSION_GREATER_EQUAL 3.24)
     add_executable(${EXECUTABLE} ${CPP_SOURCES} ${CUDA_SOURCES})
 
     set_target_properties(${EXECUTABLE}
-    PROPERTIES
-    CUDA_SEPARABLE_COMPILATION ON
-    CUDA_ARCHITECTURES native
+        PROPERTIES
+        CUDA_SEPARABLE_COMPILATION ON
+        CUDA_ARCHITECTURES native
     )
 
     add_definitions(-DCUDA_AVAILABLE)
@@ -54,7 +55,8 @@ target_compile_options(${EXECUTABLE} PRIVATE
     $<$<CONFIG:Debug>:-g3>
 )
 
-set_target_properties(${EXECUTABLE} PROPERTIES
+set_target_properties(${EXECUTABLE}
+    PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/../release
     RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/../debug
 )
