@@ -36,7 +36,7 @@ void Fractal::colorizePixelsByCPU(sf::Image& image)
     int range = WINDOW_SIZE / THREADS_COUNT;
     std::vector<std::thread> threads;
 
-    if (_type == FractalType::Julia && !_isJuliaLocked)
+    if (isNeedToHandleMouseMoved())
     {
         _c.imJulia = _mouseY / _zoom + _offsetY;
         _c.reJulia = _mouseX / _zoom + _offsetX;

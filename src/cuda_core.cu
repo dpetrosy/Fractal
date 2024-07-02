@@ -1,8 +1,8 @@
 #include "cuda_utils.cuh"
 #include "fractal.hpp"
 
-__global__ void computeFractalCUDA(sf::Color* pixels, ComplexNumber c, double zoom,
-    double offsetX, double offsetY, RGBColor color, FractalType type)
+__global__ void computeFractalCUDA(sf::Color* pixels, ComplexNumber c,
+    double zoom, double offsetX, double offsetY, RGBColor color, FractalType type)
 {
     int x = blockIdx.x * blockDim.x + threadIdx.x;
     int y = blockIdx.y * blockDim.y + threadIdx.y;
@@ -58,6 +58,7 @@ void colorizePixelsByGPU(sf::Image& image, Fractal& fractal)
     sf::Color* imagePtr;
     cudaMalloc((void**)&imagePtr, WINDOW_SIZE * WINDOW_SIZE * sizeof(sf::Color));
 
+    // 256 threads per block
     dim3 threadsPerBlock(16, 16);
     dim3 blocksPerGrid((WINDOW_SIZE + threadsPerBlock.x - 1) / threadsPerBlock.x,
         (WINDOW_SIZE + threadsPerBlock.y - 1) / threadsPerBlock.y);
@@ -75,11 +76,11 @@ void colorizePixelsByGPU(sf::Image& image, Fractal& fractal)
         c.imJulia = fractal.getMouseY() / zoom + offsetY;
     }
 
-    computeFractalCUDA<<<blocksPerGrid, threadsPerBlock>>>(imagePtr, c, zoom, 
+    computeFractalCUDA<<<blocksPerGrid, threadsPerBlock>>>(imagePtr, c, zoom,
         offsetX, offsetY, color, type);
     cudaDeviceSynchronize();
 
-    cudaMemcpy((void *)image.getPixelsPtr(), imagePtr, WINDOW_SIZE * WINDOW_SIZE *
-        sizeof(sf::Color), cudaMemcpyDeviceToHost);
+    cudaMemcpy((void *)image.getPixelsPtr(), imagePtr, WINDOW_SIZE *
+        WINDOW_SIZE * sizeof(sf::Color), cudaMemcpyDeviceToHost);
     cudaFree(imagePtr);
 }

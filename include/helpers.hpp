@@ -12,6 +12,11 @@
 #define ZOOM 1.3
 #define VIEW_CHANGE_SIZE (WINDOW_SIZE / 15)
 
+// Mandelbox fractal defines
+#define SCALE 2
+#define FIXED_RADIUS 1
+#define MINIMUM_RADIUS 0.5
+
 // Red
 #define RED 21
 #define GREEN 0
@@ -46,11 +51,6 @@
 // #define RED 0
 // #define GREEN 0
 // #define BLUE 205
-
-// Mandelbox fractal defines
-#define SCALE 2
-#define FIXED_RADIUS 1
-#define MINIMUM_RADIUS 0.5
 
 namespace
 {
