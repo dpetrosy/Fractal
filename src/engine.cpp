@@ -4,10 +4,10 @@ Engine::Engine()
 {
     _image.create(WINDOW_SIZE, WINDOW_SIZE, sf::Color::Black);
     if (!_texture.loadFromImage(_image))
-        throw std::runtime_error("-- Failed to create SFML image.\n-- Terminating the program...");
+        throw std::runtime_error("-- Failed to create SFML image.");
     _window.create(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), APP_NAME);
     if (!_window.isOpen())
-        throw std::runtime_error("-- Failed to crate SFML window.\n-- Terminating the program...");
+        throw std::runtime_error("-- Failed to crate SFML window.");
 }
 
 Engine::~Engine()
@@ -24,7 +24,7 @@ void Engine::draw()
     _fractal.colorizePixels(_image);
     _window.clear(sf::Color::Black);
     if (!_texture.loadFromImage(_image))
-        throw std::runtime_error("-- Failed to set pixel on image.\n-- Terminating the program...");
+        throw std::runtime_error("-- Failed to set pixel on image.");
     _sprite.setTexture(_texture);
     _window.draw(_sprite);
     _window.display();

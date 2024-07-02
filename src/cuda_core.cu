@@ -56,7 +56,13 @@ __global__ void computeFractalCUDA(sf::Color* pixels, ComplexNumber c,
 void colorizePixelsByGPU(sf::Image& image, Fractal& fractal)
 {
     sf::Color* imagePtr;
-    cudaMalloc((void**)&imagePtr, WINDOW_SIZE * WINDOW_SIZE * sizeof(sf::Color));
+    cudaError_t cudaStatus;
+    cudaStatus = cudaMalloc((void**)&imagePtr, WINDOW_SIZE *
+        WINDOW_SIZE * sizeof(sf::Color));
+
+    if (cudaStatus != cudaSuccess)
+        throw std::runtime_error("-- cudaMalloc error: " +
+            std::string(cudaGetErrorString(cudaStatus)));
 
     // 256 threads per block
     dim3 threadsPerBlock(16, 16);
@@ -80,7 +86,11 @@ void colorizePixelsByGPU(sf::Image& image, Fractal& fractal)
         offsetX, offsetY, color, type);
     cudaDeviceSynchronize();
 
-    cudaMemcpy((void *)image.getPixelsPtr(), imagePtr, WINDOW_SIZE *
+    cudaStatus = cudaMemcpy((void *)image.getPixelsPtr(), imagePtr, WINDOW_SIZE *
         WINDOW_SIZE * sizeof(sf::Color), cudaMemcpyDeviceToHost);
+
+    if (cudaStatus != cudaSuccess)
+        throw std::runtime_error("-- cudaMemcpy error: " +
+            std::string(cudaGetErrorString(cudaStatus)));
     cudaFree(imagePtr);
 }

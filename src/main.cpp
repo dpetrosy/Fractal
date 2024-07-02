@@ -24,8 +24,10 @@ int main(int argc, char **argv) try
 catch(const std::exception& e)
 {
     std::cerr << e.what() << std::endl;
+    std::cerr << "-- Terminating the program..." << std::endl;
 }
 catch(...)
 {
     std::cerr << "-- Unknown exception was caught." << std::endl;
+    std::cerr << "-- Terminating the program..." << std::endl;
 }
