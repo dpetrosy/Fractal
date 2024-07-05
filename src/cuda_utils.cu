@@ -12,7 +12,7 @@ __device__ size_t calcMandelbrotCUDA(ComplexNumber& c)
 		z.im = 2.0 * z.re * z.im + c.im;
 		z.re = reTemp;
 	}
-	return (i);
+	return i;
 }
 
 __device__ size_t calcJuliaCUDA(ComplexNumber& c)
@@ -27,7 +27,7 @@ __device__ size_t calcJuliaCUDA(ComplexNumber& c)
 		z.im = 2.0 * z.re * z.im + c.imJulia;
 		z.re = reTemp;
 	}
-	return (i);
+	return i;
 }
 
 __device__ size_t calcBurningShipCUDA(ComplexNumber& c)
@@ -42,7 +42,7 @@ __device__ size_t calcBurningShipCUDA(ComplexNumber& c)
 		z.im = std::fabs(2.0 * z.re * z.im) + c.im;
 		z.re = std::fabs(reTemp);
 	}
-	return (i);
+	return i;
 }
 
 __device__ size_t calcTricornCUDA(ComplexNumber& c)
@@ -57,7 +57,7 @@ __device__ size_t calcTricornCUDA(ComplexNumber& c)
 		z.im = -2.0 * z.re * z.im + c.im;
 		z.re = reTemp;
 	}
-	return (i);
+	return i;
 }
 
 __device__ size_t calcMultibrotCUDA(ComplexNumber& c)
@@ -74,7 +74,7 @@ __device__ size_t calcMultibrotCUDA(ComplexNumber& c)
 		z.re = z.re * (reSqr*reSqr - 10.0*reSqr*imSqr + 5.0*imSqr*imSqr) + c.re;
 		z.im = z.im * (5.0*reSqr*reSqr - 10.0*reSqr*imSqr + imSqr*imSqr) + c.im;
 	}
-	return (i);
+	return i;
 }
 
 __device__ size_t calcMandelbarCUDA(ComplexNumber& c)
@@ -91,7 +91,7 @@ __device__ size_t calcMandelbarCUDA(ComplexNumber& c)
 		z.re = -z.re * (reSqr*reSqr - 10.0*reSqr*imSqr + 5.0*imSqr*imSqr) + c.re;
 		z.im = z.im * (5.0*reSqr*reSqr - 10.0*reSqr*imSqr + imSqr*imSqr) + c.im;
 	}
-	return (i);
+	return i;
 }
 
 __device__ size_t calcPerBurningShipCUDA(ComplexNumber& c)
@@ -106,7 +106,7 @@ __device__ size_t calcPerBurningShipCUDA(ComplexNumber& c)
 		z.im = 2.0 * z.re * std::fabs(z.im) + c.im;
 		z.re = reTemp;
 	}
-	return (i);
+	return i;
 }
 
 __device__ size_t calcCelticMandelbrotCUDA(ComplexNumber& c)
@@ -121,7 +121,7 @@ __device__ size_t calcCelticMandelbrotCUDA(ComplexNumber& c)
 		z.im = 2.0 * z.re * z.im + c.im;
 		z.re = reTemp;
 	}
-	return (i);
+	return i;
 }
 
 __device__ double boxFoldCUDA(double z)
@@ -156,5 +156,5 @@ __device__ size_t calcMandelboxCUDA(ComplexNumber& c)
 		z.re = z.re * SCALE * ballFoldCUDA(MINIMUM_RADIUS, mag) + c.re;
 		z.im = z.im * SCALE * ballFoldCUDA(MINIMUM_RADIUS, mag) + c.im;
 	}
-	return (i);
+	return i;
 }
