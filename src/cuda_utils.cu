@@ -130,7 +130,7 @@ __device__ double boxFoldCUDA(double z)
 		z = 2.0 - z;
 	else if (z < -1.0)
 		z = -2.0 - z;
-	return (z);
+	return z;
 }
 
 __device__ double ballFoldCUDA(double r, double mag)
@@ -139,7 +139,7 @@ __device__ double ballFoldCUDA(double r, double mag)
 		mag = mag / (r * r);
 	else if (mag < 1.0)
 		mag = 1.0 / (mag * mag);
-	return (mag);
+	return mag;
 }
 
 __device__ size_t calcMandelboxCUDA(ComplexNumber& c)

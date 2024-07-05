@@ -13,7 +13,7 @@ size_t calcMandelbrot(ComplexNumber& c)
 		z.im = 2.0 * z.re * z.im + c.im;
 		z.re = reTemp;
 	}
-	return (i);
+	return i;
 }
 
 size_t calcJulia(ComplexNumber& c)
@@ -28,7 +28,7 @@ size_t calcJulia(ComplexNumber& c)
 		z.im = 2.0 * z.re * z.im + c.imJulia;
 		z.re = reTemp;
 	}
-	return (i);
+	return i;
 }
 
 size_t calcBurningShip(ComplexNumber& c)
@@ -43,7 +43,7 @@ size_t calcBurningShip(ComplexNumber& c)
 		z.im = std::fabs(2.0 * z.re * z.im) + c.im;
 		z.re = std::fabs(reTemp);
 	}
-	return (i);
+	return i;
 }
 
 size_t calcTricorn(ComplexNumber& c)
@@ -58,7 +58,7 @@ size_t calcTricorn(ComplexNumber& c)
 		z.im = -2.0 * z.re * z.im + c.im;
 		z.re = reTemp;
 	}
-	return (i);
+	return i;
 }
 
 size_t calcMultibrot(ComplexNumber& c)
@@ -75,7 +75,7 @@ size_t calcMultibrot(ComplexNumber& c)
 		z.re = z.re * (reSqr*reSqr - 10.0*reSqr*imSqr + 5.0*imSqr*imSqr) + c.re;
 		z.im = z.im * (5.0*reSqr*reSqr - 10.0*reSqr*imSqr + imSqr*imSqr) + c.im;
 	}
-	return (i);
+	return i;
 }
 
 size_t calcMandelbar(ComplexNumber& c)
@@ -92,7 +92,7 @@ size_t calcMandelbar(ComplexNumber& c)
 		z.re = -z.re * (reSqr*reSqr - 10.0*reSqr*imSqr + 5.0*imSqr*imSqr) + c.re;
 		z.im = z.im * (5.0*reSqr*reSqr - 10.0*reSqr*imSqr + imSqr*imSqr) + c.im;
 	}
-	return (i);
+	return i;
 }
 
 size_t calcPerBurningShip(ComplexNumber& c)
@@ -107,7 +107,7 @@ size_t calcPerBurningShip(ComplexNumber& c)
 		z.im = 2.0 * z.re * std::fabs(z.im) + c.im;
 		z.re = reTemp;
 	}
-	return (i);
+	return i;
 }
 
 size_t calcCelticMandelbrot(ComplexNumber& c)
@@ -122,7 +122,7 @@ size_t calcCelticMandelbrot(ComplexNumber& c)
 		z.im = 2.0 * z.re * z.im + c.im;
 		z.re = reTemp;
 	}
-	return (i);
+	return i;
 }
 
 static double boxFold(double z)
@@ -131,7 +131,7 @@ static double boxFold(double z)
 		z = 2.0 - z;
 	else if (z < -1.0)
 		z = -2.0 - z;
-	return (z);
+	return z;
 }
 
 static double ballFold(double r, double mag)
@@ -140,7 +140,7 @@ static double ballFold(double r, double mag)
 		mag = mag / (r * r);
 	else if (mag < 1.0)
 		mag = 1.0 / (mag * mag);
-	return (mag);
+	return mag;
 }
 
 size_t calcMandelbox(ComplexNumber& c)
@@ -157,5 +157,5 @@ size_t calcMandelbox(ComplexNumber& c)
 		z.re = z.re * SCALE * ballFold(MINIMUM_RADIUS, mag) + c.re;
 		z.im = z.im * SCALE * ballFold(MINIMUM_RADIUS, mag) + c.im;
 	}
-	return (i);
+	return i;
 }
