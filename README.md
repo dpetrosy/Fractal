@@ -35,26 +35,26 @@
 
 A fractal is a fragmented geometrical figure that infinitely repeats at smaller scales. \
 So this project generates beautiful fractals from the complex numbers of an iterative mathematical construct. \
-For graphics, I used **SFML** library and **NVIDIA CUDA Toolkit** for parallel computing. \
-Project builds by **CMake** build system, so if you do not have CUDA Toolkit or your platform doesn't have
+For graphics, I used [SFML](https://www.sfml-dev.org/index.php) library and [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) for parallel computing. \
+Project builds by [CMake](https://cmake.org/) build system, so if you do not have CUDA Toolkit or your platform doesn't have
 CUDA support, CMake will build this project without CUDA support and computing will be done through CPU threads. \
-By default, there will be 40 parallel threads, the color is rgb(21, 0, 0) and the window size is 800px.
+By default, there will be **40 parallel threads**, the color is rgb(21, 0, 0) and the window size is 800px.
 
 > [!NOTE]  
-> If you want to change color, threads count, window size, or other defaults, change them in helpers.hpp file.
+> If you want to change color, threads count, window size, or other defaults, change them in **helpers.hpp** file.
 
 ## 📑 Fractals List
 
 The program supports these fractal sets:
 
-| Name               | Formula                                                                                            |
-|:------------------:|:--------------------------------------------------------------------------------------------------:|
-| Mandelbrot         | $z_{n+1} = z_n^2 + c, z_0 = 0$                                                                     |
-| Julia              | $z_{n+1} = z_n^2 + c, z_0 = c$                                                                     |
-| Burning Ship       | $z_{n+1} = abs(z_n^2) + c, z_0 = 0$                                                                |
-| Tricorn            | $z_{n+1} = \overline{z_n}^2 + c, z_0 = 0$                                                          |
-| Mandelbox          | It's more complex, see [this article](https://sites.google.com/site/mandelbox/what-is-a-mandelbox) |
-| Multibrot          | $z_{n+1} = z_n^d + c, z_0 = 0, d = 5$                                                              |
-| Mandelbar          | It's more complex, see **Mandelbar 5th (horizontal)** in [this image]()                            |
-| Per. Burning Ship  | It's more complex, see **Perpendicular Burning Ship** in [this image]()                            |
-| Celtic Mandelbrot  | It's more complex, see **Celtic Mandelbrot** in [this image]()                                     |
+| Name               | Formula                                                                                                          |
+|:------------------:|:----------------------------------------------------------------------------------------------------------------:|
+| Mandelbrot         | $z_{n+1} = z_n^2 + c, z_0 = 0$                                                                                   |
+| Julia              | $z_{n+1} = z_n^2 + c, z_0 = c$                                                                                   |
+| Burning Ship       | $z_{n+1} = abs(z_n^2) + c, z_0 = 0$                                                                              |
+| Tricorn            | $z_{n+1} = \overline{z_n}^2 + c, z_0 = 0$                                                                        |
+| Mandelbox          | It's more complex, see [this article](https://sites.google.com/site/mandelbox/what-is-a-mandelbox)               |
+| Multibrot          | $z_{n+1} = z_n^d + c, z_0 = 0, d = 5$                                                                            |
+| Mandelbar          | It's more complex, see **Mandelbar 5th (horizontal)** in [this image](README_files/Reference/Fractals_5th.png)   |
+| Per. Burning Ship  | It's more complex, see **Perpendicular Burning Ship** in [this image](README_files/Reference/Mandelbrot_set.png) |
+| Celtic Mandelbrot  | It's more complex, see **Celtic Mandelbrot** in [this image](README_files/Reference/Mandelbrot_set.png)          |
