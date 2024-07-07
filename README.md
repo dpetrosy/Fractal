@@ -47,14 +47,14 @@ By default, there will be **40 parallel threads**, the color is rgb(21, 0, 0) an
 
 The program supports these fractal sets:
 
-| Name               | Formula                                                                                                          |
-|:------------------:|:----------------------------------------------------------------------------------------------------------------:|
-| Mandelbrot         | $z_{n+1} = z_n^2 + c, z_0 = 0$                                                                                   |
-| Julia              | $z_{n+1} = z_n^2 + c, z_0 = c$                                                                                   |
-| Burning Ship       | $z_{n+1} = abs(z_n^2) + c, z_0 = 0$                                                                              |
-| Tricorn            | $z_{n+1} = \overline{z_n}^2 + c, z_0 = 0$                                                                        |
-| Mandelbox          | It's more complex, see [this article](https://sites.google.com/site/mandelbox/what-is-a-mandelbox)               |
-| Multibrot          | $z_{n+1} = z_n^d + c, z_0 = 0, d = 5$                                                                            |
-| Mandelbar          | It's more complex, see **Mandelbar 5th (horizontal)** in [this image](README_files/Reference/Fractals_5th.png)   |
-| Per. Burning Ship  | It's more complex, see **Perpendicular Burning Ship** in [this image](README_files/Reference/Mandelbrot_set.png) |
-| Celtic Mandelbrot  | It's more complex, see **Celtic Mandelbrot** in [this image](README_files/Reference/Mandelbrot_set.png)          |
+| Name               | Formula                                                                                                  |
+|:------------------:|:--------------------------------------------------------------------------------------------------------:|
+| Mandelbrot         | $z_{n+1} = z_n^2 + c, z_0 = 0$                                                                           |
+| Julia              | $z_{n+1} = z_n^2 + c, z_0 = c$                                                                           |
+| Burning Ship       | $z_{n+1} = abs(z_n^2) + c, z_0 = 0$                                                                      |
+| Tricorn            | $z_{n+1} = \overline{z_n}^2 + c, z_0 = 0$                                                                |
+| Mandelbox          | It's more complex, see [this article](https://sites.google.com/site/mandelbox/what-is-a-mandelbox)       |
+| Multibrot          | $z_{n+1} = z_n^d + c, z_0 = 0, d = 5$                                                                    |
+| Mandelbar          | Take a look at **Mandelbar 5th (horizontal)** in [this image](README_files/Reference/Fractals_5th.png)   |
+| Per. Burning Ship  | Take a look at **Perpendicular Burning Ship** in [this image](README_files/Reference/Mandelbrot_set.png) |
+| Celtic Mandelbrot  | Take a look at **Celtic Mandelbrot** in [this image](README_files/Reference/Mandelbrot_set.png)          |
