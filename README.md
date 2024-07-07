@@ -2,7 +2,7 @@
 <div align="center">
   <!-- Logo -->
   <a href="https://github.com/dpetrosy/Fractal">
-  <img src="README_files/logo.png" alt="Logo" width="263" height="235">
+  <img src="README_files/logo.png" alt="Logo">
   </a>
 
   <!-- Project Name -->
