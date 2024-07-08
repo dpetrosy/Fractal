@@ -71,6 +71,52 @@ The program supports the following controls:
 | Key G         | Change the green component of fractal   |
 | Key B         | Change the blue component of fractal    |
 | Mouse Scroll  | Zoom in and out of the fractal          |
-| ⬆️ ⬇️ ⬅️ ➡️     | Change the viewpoint                    |
+| ⬆️ ⬇️ ⬅️ ➡️ | Change the viewpoint                    |
 | Key L         | Lock Julia's fractal                    |
 | Zero          | Reset the fractal to its initial state  |
+
+## 👨‍💻 Usage
+### Requirements
+
+The program is written in C++ and thus needs the **g++ compiler** and some standard **C++ libraries** to run. \
+Also needs to install **SFML** library and **CMake**. If you want to use your NVIDIA GPU power, you need to install **NVIDIA CUDA Toolkit**.
+
+### Instructions
+
+**1. Compiling the program**
+
+To build the release version, run these commands:
+
+```shell
+$ cd path/to/fractal
+$ mkdir Release
+$ cd Release
+$ cmake -DCMAKE_BUILD_TYPE=Release ..
+$ make
+```
+
+To build the debug version, run these commands:
+
+```shell
+$ cd path/to/fractal
+$ mkdir Debug
+$ cd Debug
+$ cmake -DCMAKE_BUILD_TYPE=Debug ..
+$ make
+```
+
+**2. How to run the program**
+
+Run the executable too see the help message:
+```shell
+./fractal
+```
+
+Or run with some supported fractal:
+```shell
+./fractal mandelbrot
+```
+
+> [!NOTE]  
+> For CUDA support, you need to install CMake version >= **3.24** \
+> If you want to disable CUDA support, just uncommnet line 19 in **CMakeLists.txt file**.
