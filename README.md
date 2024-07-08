@@ -120,3 +120,24 @@ Or run with some supported fractal:
 > [!NOTE]  
 > For CUDA support, you need to install CMake version >= **3.24** \
 > If you want to disable CUDA support, just uncommnet line 19 in **CMakeLists.txt file**.
+
+# 🌄 Screenshots
+
+## Mandelbrot set
+![Fractal mono-colored Mandelbrot](README_files/screenshots/mandelbrot1.png)
+![Fractal red blue and green striped Mandelbrot](README_files/screenshots/mandelbrot2.png)
+![Fractal sun crest purple Mandelbrot](README_files/screenshots/mandelbrot3.png)
+
+## Julia set
+![Fractal purple green and yellow Julia](README_files/screenshots/julia1.png)
+![Fractal red swirl Julia](README_files/screenshots/julia2.png)
+![Fractal blue snowflake Julia](README_files/screenshots/julia3.png)
+
+## Burning Ship set
+![Fract-ol golden Burning Ship](README_files/screenshots/burning_ship.png)
+
+## Tricorn set
+![Fract-ol purple Tricorn](README_files/screenshots/tricorn.png)
+
+## Mandelbox set
+![Fract-ol brown tribal Mandelbox](README_files/screenshots/mandelbox.png)
