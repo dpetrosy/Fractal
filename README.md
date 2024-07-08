@@ -58,3 +58,19 @@ The program supports these fractal sets:
 | Mandelbar          | Take a look at **Mandelbar 5th (horizontal)** in [this image](README_files/Reference/Fractals_5th.png)   |
 | Per. Burning Ship  | Take a look at **Perpendicular Burning Ship** in [this image](README_files/Reference/Mandelbrot_set.png) |
 | Celtic Mandelbrot  | Take a look at **Celtic Mandelbrot** in [this image](README_files/Reference/Mandelbrot_set.png)          |
+
+## 🎮 Controls
+
+The program supports the following controls:
+
+| Key           | Description                             |
+|:-------------:|:---------------------------------------:|
+| ESC           | Close the program window                |
+| Keys [1-9]    | Move to another fractal                 |
+| Key R         | Change the red component of fractal     |
+| Key G         | Change the green component of fractal   |
+| Key B         | Change the blue component of fractal    |
+| Mouse Scroll  | Zoom in and out of the fractal          |
+| ⬆️ ⬇️ ⬅️ ➡️     | Change the viewpoint                    |
+| Key L         | Lock Julia's fractal                    |
+| Zero          | Reset the fractal to its initial state  |
