@@ -5,7 +5,8 @@ Engine::Engine()
     _image.create(WINDOW_SIZE, WINDOW_SIZE, sf::Color::Black);
     if (!_texture.loadFromImage(_image))
         throw std::runtime_error("-- Failed to create SFML image.");
-    _window.create(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), APP_NAME);
+    _window.create(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE),
+        APP_NAME, sf::Style::Titlebar | sf::Style::Close);
     if (!_window.isOpen())
         throw std::runtime_error("-- Failed to crate SFML window.");
 }
