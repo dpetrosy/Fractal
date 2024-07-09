@@ -124,7 +124,7 @@ Or run with some supported fractal:
 # 🌄 Screenshots
 
 ## Mandelbrot set
-![Fractal mono-colored Mandelbrot](README_files/Screenshots/test.png)
+![Fractal mono-colored Mandelbrot](README_files/test.png)
 ![Fractal red blue and green striped Mandelbrot](README_files/screenshots/mandelbrot2.png)
 ![Fractal sun crest purple Mandelbrot](README_files/screenshots/mandelbrot3.png)
 
