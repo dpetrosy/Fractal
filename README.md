@@ -59,6 +59,11 @@ The program supports these fractal sets:
 | Per. Burning Ship  | Take a look at **Perpendicular Burning Ship** in [this image](README_files/Reference/Mandelbrot_set.png) |
 | Celtic Mandelbrot  | Take a look at **Celtic Mandelbrot** in [this image](README_files/Reference/Mandelbrot_set.png)          |
 
+#### Useful Links:
+https://www.deviantart.com/kosmic-stardust/art/Mandelbrot-ABS-Variations-Complete-Set-of-Formulas-487039852
+https://www.deviantart.com/kosmic-stardust/art/4th-Order-ABS-Mandelbrot-Variations-Complete-Set-601300868
+https://www.deviantart.com/kosmic-stardust/art/5th-Order-ABS-Mandelbrot-Variations-601484985
+
 ## 🎮 Controls
 
 The program supports the following controls:
